@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻松一瞥 · 英超直播</title>
+    <style>
+        /* 重置 & 基调 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9e3b8 0%, #f5d4a8 50%, #edc7a1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #2f2b26;
+        }
+
+        .card {
+            max-width: 780px;
+            width: 100%;
+            background: #fefcf7;
+            border-radius: 44px 44px 36px 36px;
+            box-shadow: 0 20px 40px -12px rgba(140, 90, 50, 0.25), 0 8px 18px rgba(80, 50, 30, 0.08);
+            padding: 2.8rem 2.4rem 2.8rem 2.4rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        /* 开场短句 —— 像朋友间轻声提起 */
+        .opening {
+            font-size: 1.2rem;
+            font-weight: 380;
+            letter-spacing: 0.01em;
+            color: #5e4d3e;
+            margin-bottom: 1rem;
+            border-left: 4px solid #d9b382;
+            padding-left: 1rem;
+        }
+
+        .opening strong {
+            font-weight: 580;
+            color: #3f3329;
+        }
+
+        /* 主标题 (温和不吵闹) */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #2b221b;
+            margin: 0.2rem 0 1rem 0;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            display: block;
+            font-size: 1rem;
+            font-weight: 380;
+            color: #7a6a5a;
+            margin-top: 0.3rem;
+            letter-spacing: 0.02em;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+            background: #faf5ed;
+            padding: 1.2rem 1.6rem;
+            border-radius: 28px;
+            margin: 1.4rem 0 1.8rem 0;
+            color: #3b332b;
+        }
+
+        .intro-text a {
+            color: #a5663a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #b87b4d;
+        }
+
+        /* 特点列表 —— 不罗列干条，而是融入叙述 */
+        .feature-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin: 2rem 0 1.8rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            background: #ffffffd6;
+            padding: 0.7rem 1.2rem 0.7rem 1rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 6px rgba(100, 70, 40, 0.04);
+        }
+
+        .feature-marker {
+            font-size: 1.2rem;
+            min-width: 1.8rem;
+            color: #b47b51;
+        }
+
+        .feature-text {
+            font-size: 0.98rem;
+            color: #3d352e;
+        }
+
+        .feature-text strong {
+            font-weight: 520;
+            color: #4f3a2a;
+        }
+
+        .feature-text a {
+            color: #8f5f3a;
+            text-decoration: none;
+            border-bottom: 1px solid #dcc1ab;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .feature-text a:hover {
+            border-bottom-color: #a96f42;
+            color: #633f26;
+        }
+
+        /* 温和的承接段落 + 场景 */
+        .bridge {
+            background: #f6efe6;
+            border-radius: 28px;
+            padding: 1.2rem 1.6rem 1.4rem 1.6rem;
+            margin: 2rem 0 1.2rem 0;
+        }
+
+        .bridge p {
+            margin-bottom: 0.6rem;
+        }
+
+        .bridge p:last-child {
+            margin-bottom: 0;
+        }
+
+        .scene-tag {
+            display: inline-block;
+            background: #e6d7c4;
+            padding: 0.05rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 440;
+            letter-spacing: 0.02em;
+            color: #3e3229;
+            margin-right: 0.2rem;
+        }
+
+        /* FAQ 摘要 —— 只问不答，留出呼吸感 */
+        .faq-note {
+            background: #f3ede5;
+            border-radius: 28px;
+            padding: 1rem 1.6rem 1.2rem 1.6rem;
+            margin-top: 1.6rem;
+            font-size: 0.95rem;
+            color: #41382f;
+        }
+
+        .faq-note span {
+            font-weight: 500;
+            color: #4b3929;
+        }
+
+        .faq-note a {
+            color: #895f3c;
+            text-decoration: none;
+            border-bottom: 1px solid #d7bc9f;
+        }
+
+        .faq-note a:hover {
+            border-bottom-color: #a4764b;
+        }
+
+        .tiny-footer {
+            margin-top: 2.2rem;
+            font-size: 0.8rem;
+            color: #867564;
+            text-align: center;
+            letter-spacing: 0.02em;
+            border-top: 1px solid #eee3d5;
+            padding-top: 1.4rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 560px) {
+            .card {
+                padding: 2rem 1.2rem 2rem 1.2rem;
+                border-radius: 32px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .opening {
+                font-size: 1rem;
+                padding-left: 0.8rem;
+            }
+
+            .feature-item {
+                border-radius: 40px;
+                padding: 0.6rem 1rem 0.6rem 0.8rem;
+            }
+
+            .intro-text {
+                padding: 0.9rem 1.2rem;
+            }
+
+            .bridge {
+                padding: 1rem 1.2rem 1.1rem 1.2rem;
+            }
+
+            .faq-note {
+                padding: 0.8rem 1rem 1rem 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+
+            .card {
+                padding: 1.4rem 0.9rem;
+                border-radius: 28px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .feature-group {
+                gap: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 开场短句：不煽情，像轻轻推开一扇门 -->
+        <div class="opening">
+            <strong>傍晚</strong> 或 <strong>凌晨</strong>，总有一场球赛在等你。
+        </div>
+
+        <!-- 标题 + 描述 -->
+        <h1>
+            关于看球这件事
+            <span class="subhead">一个偏向稳定的入口，和一点个人化的界面感受</span>
+        </h1>
+
+        <!-- 承接：自然引出页面说明 -->
+        <div class="intro-text">
+            如果你也习惯用浏览器追逐绿茵场上的节奏，大概会需要一个直接、不绕路的落脚点。  
+            这个页面指向的，就是一个叫 <a href="https://website-epl.com">英超直播</a> 的地方——没有弹窗围堵，没有多余跳转，只有比赛画面和相关数据自然地待在那里。
+        </div>
+
+        <!-- 特点列表 (更像是你慢慢会发现的事情) -->
+        <div class="feature-group">
+            <div class="feature-item">
+                <span class="feature-marker">⚡</span>
+                <span class="feature-text"><strong>信号聚合</strong> – 多线路源轮换，不至于因一条流中断就错过关键球。</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-marker">📋</span>
+                <span class="feature-text"><strong>赛程一目了然</strong> – 未来三天以及本周的英超对阵，时间、场地都列得清爽。</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-marker">🤝</span>
+                <span class="feature-text"><strong>无强制注册</strong> – 你不需要留下邮箱或手机号，直接找到 <a href="https://website-epl.com">英超直播</a> 就能进入观看页面。</span>
+            </div>
+        </div>
+
+        <!-- 温和的承接 + 使用场景描述 -->
+        <div class="bridge">
+            <p><span class="scene-tag">📱 手机端</span> 如果周末临时出门，用浏览器打开页面，不比打开一个本地应用慢多少。页面针对竖屏做过简单适配，文字和按钮不会挤作一团。</p>
+            <p><span class="scene-tag">💻 电脑端</span> 把窗口缩放到七成宽，左边看赛况，右边还能留一小块查积分或聊球群。当然，全屏沉浸也没问题。</p>
+            <p style="font-style: italic; color: #5e4d3b;">从没想过要为看球折腾一番环境——这个入口希望做到的，就是「打开即用」四个字。</p>
+        </div>
+
+        <!-- FAQ 摘要 (只提问题轮廓，不写详细答案，保持克制) -->
+        <div class="faq-note">
+            <span>常见疑问 · 摘要</span><br>
+            画面卡顿怎么排查？延迟和源的关系？是否支持投屏？哪些比赛回放保留得比较久？——这些在 <a href="https://website-epl.com">英超直播</a> 页面内的帮助区都有简短的说明，翻到底部就能看到。
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="tiny-footer">
+            祝你看球愉快 · 比分只属于比赛本身
+        </div>
+    </div>
+</body>
+</html>
