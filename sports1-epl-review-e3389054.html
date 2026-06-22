@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英超直播 · 赛事情报索引 | sports1-epl.com</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: #f2f4f6;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* 主视觉卡片 */
+  .hero-card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    border: 1px solid #e9eef2;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #2563eb, #7c3aed);
+    border-radius: 6px 0 0 6px;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: #475569;
+    max-width: 70%;
+    margin-bottom: 1.2rem;
+  }
+  .hero-stat {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    border-top: 1px solid #eef2f6;
+    padding-top: 1.5rem;
+  }
+  .hero-stat-item {
+    font-size: 0.95rem;
+    color: #334155;
+    background: #f8fafc;
+    padding: 0.3rem 1rem 0.3rem 0.8rem;
+    border-radius: 30px;
+    border: 1px solid #e2e8f0;
+  }
+  .hero-stat-item strong {
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  /* 信息卡片网格 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 680px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    .hero-sub {
+      max-width: 100%;
+    }
+    .hero-card {
+      padding: 1.8rem 1.5rem;
+    }
+    .faq-card {
+      padding: 1.5rem;
+    }
+  }
+
+  .info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e9eef2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    padding: 1.8rem 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  .info-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
+  }
+  .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f1f5f9;
+    border-radius: 14px;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    color: #2563eb;
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+  }
+  .card-desc {
+    color: #334155;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  .card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .card-list li {
+    position: relative;
+    padding-left: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #475569;
+  }
+  .card-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: 600;
+  }
+
+  /* 自然链接段落（信息索引风格） */
+  .link-section {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e9eef2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    padding: 1.8rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .link-section p {
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 0.8rem;
+  }
+  .link-section a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(37,99,235,0.2);
+  }
+  .link-section a:hover {
+    border-bottom-color: #1d4ed8;
+    color: #1d4ed8;
+  }
+  .link-highlight {
+    background: #f0f4fe;
+    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  /* FAQ摘要卡片 */
+  .faq-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e9eef2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    padding: 1.8rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .faq-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .faq-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+  .faq-q {
+    font-weight: 500;
+    color: #0f172a;
+    margin-bottom: 0.2rem;
+  }
+  .faq-a {
+    font-size: 0.92rem;
+    color: #475569;
+  }
+
+  .fine-print {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 主视觉 / 资料索引锚点 -->
+  <div class="hero-card">
+    <h1 class="hero-title">英超直播 · 赛事情报索引</h1>
+    <div class="hero-sub">基于公开信息整理，聚焦英超赛程、数据与观看路径。</div>
+    <div class="hero-stat">
+      <span class="hero-stat-item"><strong>20</strong> 支俱乐部</span>
+      <span class="hero-stat-item"><strong>380</strong> 场/赛季</span>
+      <span class="hero-stat-item"><strong>多终端</strong> 适配</span>
+    </div>
+  </div>
+
+  <!-- 用途卡片 + 适合人群 -->
+  <div class="card-grid">
+    <!-- 用途卡片：资料整理 -->
+    <div class="info-card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">赛程与数据归档</div>
+      <div class="card-desc">每轮对阵、积分榜、射手榜、红黄牌统计 —— 以结构化卡片形式呈现，便于快速查阅与横向对比。</div>
+      <ul class="card-list">
+        <li>过往赛季排名与胜负趋势</li>
+        <li>主客场胜率 & 进球分布</li>
+        <li>赛程日历（UTC+8 对照）</li>
+      </ul>
+    </div>
+
+    <!-- 适合人群 -->
+    <div class="info-card">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">适合哪些信息需求者</div>
+      <div class="card-desc">无论你是深度数据控、常规观赛者，还是赛前做功课的球迷，都可以在此找到所需的信息层。</div>
+      <ul class="card-list">
+        <li>习惯赛前整理对阵记录</li>
+        <li>需要快速查阅球队状态</li>
+        <li>关注关键球员出场与伤病摘要</li>
+        <li>偏好简洁、无干扰的信息界面</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 自然链接段落（嵌入核心关键词） -->
+  <div class="link-section">
+    <p><span class="link-highlight">▸ 索引说明</span> 本页作为信息聚合入口，围绕英超联赛整理内容模块。若你需要直接获取当前轮次对阵、实时比分或历史数据，推荐从 <a href="https://sports1-epl.com">英超直播</a> 的赛程面板切入，内部包含逐轮卡片与球队指标。</p>
+    <p><span class="link-highlight">▸ 结构提示</span> 页面按「赛程总览 → 球队档案 → 统计图表」分层组织，你可在站内通过顶部导航切换资料视图。所有数据来源均为公开赛事统计，更新频率与官方保持一致。</p>
+  </div>
+
+  <!-- FAQ 摘要卡片（紧扣信息索引角度） -->
+  <div class="faq-card">
+    <div class="faq-title">📌 信息索引 FAQ</div>
+    <div class="faq-item">
+      <div class="faq-q">该站是否提供历史赛季对比资料？</div>
+      <div class="faq-a">支持最近五个完整赛季的积分、进球、净胜球及主场/客场拆分，以表格与简要趋势线呈现。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">赛程时间显示方式？</div>
+      <div class="faq-a">默认使用北京时间（UTC+8），同时提供原始 UTC 时间对照，便于跨时区用户参考。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">数据更新节奏如何？</div>
+      <div class="faq-a">每轮比赛结束后 2 小时内完成积分榜、射手榜及关键事件更新，赛前 48 小时放出下一轮对阵卡。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">移动端查看体验？</div>
+      <div class="faq-a">卡片式布局在手机浏览器上自动适配为单列，表格支持横向滚动，不影响数据阅读完整性。</div>
+    </div>
+  </div>
+
+  <div class="fine-print">
+    信息整理 · 不作实时直播信号承诺 · 仅供资料参考
+  </div>
+</div>
+</body>
+</html>
